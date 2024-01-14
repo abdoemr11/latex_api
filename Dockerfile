@@ -19,7 +19,8 @@ RUN cat installation_log.txt
 RUN /root/.TinyTeX/bin/*/tlmgr install collection-basic
 RUN ls /root/.TinyTeX/bin/*/
 # Check if pdflatex is installed
-RUN command -v /root/.TinyTeX/bin/*/pdflatex >/dev/null 2>&1 || { echo >&2 "pdflatex is not installed. Aborting."; exit 1; }
+RUN PATH=$PATH:/root/.TinyTeX/bin/*/
+RUN command -v pdflatex >/dev/null 2>&1 || { echo >&2 "pdflatex is not installed. Aborting."; exit 1; }
 
 # Install app dependencies
 RUN npm install
