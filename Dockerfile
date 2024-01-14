@@ -7,17 +7,18 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install app dependencies
-RUN npm install
+
 
 # Install TinyTeX
 RUN apt-get update && apt-get install -y wget
 RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 RUN /root/.TinyTeX/bin/*/tlmgr install collection-basic
-
+RUN which pdflatex
 # Check if pdflatex is installed
 RUN command -v pdflatex >/dev/null 2>&1 || { echo >&2 "pdflatex is not installed. Aborting."; exit 1; }
 
+# Install app dependencies
+RUN npm install
 # Bundle your app source
 COPY . .
 
