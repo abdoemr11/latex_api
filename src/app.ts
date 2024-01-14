@@ -20,8 +20,19 @@ app.post("/api/latex-to-pdf", (req: Request, res: Response) => {
 
     // Use pdflatex to compile LaTeX to PDF
     const command = `pdflatex -interaction=batchmode -halt-on-error`;
+    exec(`which pdflatex`, (error, stdout, stderr) => {
+        console.log(stdout);
+        if (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ error: "Can't find pdflatex.", stderr });
+        }
 
+        res.status(200).sendFile("output.pdf", { root: __dirname });
+    });
     exec(`echo "${latexString}" | ${command}`, (error, stdout, stderr) => {
+        console.log(stdout);
         if (error) {
             console.log(error);
             return res
