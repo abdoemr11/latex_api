@@ -17,7 +17,7 @@ RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh > installatio
 # Print the content of the installation log (you can modify or redirect the output as needed)
 RUN cat installation_log.txt
 RUN /root/.TinyTeX/bin/*/tlmgr install collection-basic
-RUN which pdftex
+RUN which tlmgr
 # Check if pdflatex is installed
 RUN command -v pdflatex >/dev/null 2>&1 || { echo >&2 "pdflatex is not installed. Aborting."; exit 1; }
 
