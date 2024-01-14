@@ -23,6 +23,7 @@ app.post("/api/latex-to-pdf", (req: Request, res: Response) => {
 
     exec(`echo "${latexString}" | ${command}`, (error, stdout, stderr) => {
         if (error) {
+            console.log(error);
             return res
                 .status(500)
                 .json({ error: "Error compiling LaTeX to PDF.", stderr });
@@ -32,6 +33,7 @@ app.post("/api/latex-to-pdf", (req: Request, res: Response) => {
     });
 });
 app.get("/api/health", (req: Request, res: Response) => {
+    console.log("The app is up and running");
     res.status(200).json({ status: "ok" });
 });
 // Start the server
