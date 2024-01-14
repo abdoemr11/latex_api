@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import { exec } from "child_process";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3000;
@@ -28,7 +30,8 @@ app.post("/api/latex-to-pdf", (req: Request, res: Response) => {
                 .status(500)
                 .json({ error: "Can't find pdflatex.", stderr });
         }
-
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = dirname(__filename);
         res.status(200).sendFile("output.pdf", { root: __dirname });
     });
     exec(`echo "${latexString}" | ${command}`, (error, stdout, stderr) => {
