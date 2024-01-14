@@ -20,8 +20,9 @@ RUN /root/.TinyTeX/bin/*/tlmgr install collection-basic
 RUN ls /root/.TinyTeX/bin/*/
 # Check if pdflatex is installed
 RUN echo $PATH
-ENV PATH="$PATH:/root/.TinyTeX/bin/*/"
+ENV PATH="$PATH:/root/.TinyTeX/bin/*"
 RUN echo $PATH
+RUN which pdflatex
 RUN command -v pdflatex >/dev/null 2>&1 || { echo >&2 "pdflatex is not installed. Aborting."; exit 1; }
 
 # Install app dependencies
