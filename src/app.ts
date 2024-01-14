@@ -31,7 +31,9 @@ app.post("/api/latex-to-pdf", (req: Request, res: Response) => {
         res.status(200).sendFile("output.pdf", { root: __dirname });
     });
 });
-
+app.get("/api/health", (req: Request, res: Response) => {
+    res.status(200).json({ status: "ok" });
+});
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
