@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# TypeScript
+dist/
+
+# macOS
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# VS Code
+.vscode/
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# TinyTeX
+install-tl.log
