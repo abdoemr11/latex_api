@@ -4,7 +4,8 @@ FROM node:14-alpine
 
 #install Latex
 RUN apk update && \
-    apk add --no-cache wget  texmf-dist texlive 
+    apk add --no-cache wget  texmf-dist texlive && \
+    apk add texlive-latex-extra
     
 RUN which pdflatex
 
