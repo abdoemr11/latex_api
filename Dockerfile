@@ -19,6 +19,7 @@ RUN apk update && \
 
 ENV PATH="${PATH}:/usr/local/texlive/bin/x86_64-linuxmusl"
 
+RUN tlmgr install preprint
 RUN which pdflatex
 
 # Set the working directory to /app
